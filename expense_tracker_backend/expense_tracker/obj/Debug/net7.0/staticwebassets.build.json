@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "zHpHsoIQCoJ7abgYE08WmPNy51Q+AuQJ7WdIxEKaKIc=",
+  "Source": "expense_tracker",
+  "BasePath": "_content/expense_tracker",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
