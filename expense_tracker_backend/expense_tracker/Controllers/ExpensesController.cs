@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using expense_tracker.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace expense_tracker.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ExpensesController : ControllerBase
@@ -21,6 +23,7 @@ namespace expense_tracker.Controllers
         }
 
         // GET: api/Expenses
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Expense>>> GetExpenses()
         {
@@ -30,15 +33,19 @@ namespace expense_tracker.Controllers
           }
             return await _context.Expenses.ToListAsync();
         }
+
+
         //GET UserwiseExpenses
-        
+        [AllowAnonymous]
         [HttpGet("users/{uid}")]
-        public async Task<ActionResult<IEnumerable<Expense>>> GetUserwiseExpenses(long uid)
+        public async Task<ActionResult<IEnumerable<Expense>>> GetUserwiseExpenses(string uid)
         {
             return await _context.Expenses.Where(p=>p.Uid == uid).ToListAsync();
         }
         
+
         // GET: api/Expenses/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<Expense>> GetExpense(long id)
         {
@@ -58,6 +65,7 @@ namespace expense_tracker.Controllers
 
         // PUT: api/Expenses/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [AllowAnonymous]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutExpense(long id, Expense expense)
         {
@@ -89,6 +97,7 @@ namespace expense_tracker.Controllers
 
         // POST: api/Expenses
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult<Expense>> PostExpense(Expense expense)
         {
@@ -96,6 +105,7 @@ namespace expense_tracker.Controllers
           {
               return Problem("Entity set 'ExpenseContext.Expenses'  is null.");
           }
+            
             _context.Expenses.Add(expense);
             await _context.SaveChangesAsync();
 
@@ -103,6 +113,7 @@ namespace expense_tracker.Controllers
         }
 
         // DELETE: api/Expenses/5
+        [AllowAnonymous]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteExpense(long id)
         {

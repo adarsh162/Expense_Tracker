@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from "react";
 import axios from "axios";
 import { TextField,Button } from "@mui/material";
+import { toast } from "react-toastify";
 
 const DeleteExpense=()=>{
     const [details,setdetails] = useState({
@@ -26,7 +27,7 @@ const DeleteExpense=()=>{
             Date:details.Date,
             Category:details.Category
         })
-        alert("Successfully Deleted!!");
+        toast('Successfully Deleted', {icon: '👏',position: toast.POSITION.BOTTOM_CENTER ,style: {height:'10px',width:'200px',borderRadius: '10px',background:"red",color: '#ffffff',},});
        }
        catch(error){
         alert(error);

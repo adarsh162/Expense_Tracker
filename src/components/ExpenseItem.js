@@ -2,6 +2,10 @@ import React from 'react';
 import { TiDelete } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import '../style/styles.css';
+import '../style/style.css';
 
 const ExpenseItem = (props) => {
 	const DeleteData = () => {
@@ -9,7 +13,7 @@ const ExpenseItem = (props) => {
         //console.log(details);
         axios.delete(`https://localhost:7028/api/Expenses/${props.id}`,
         );
-        alert("Successfully Deleted!!");
+		toast('Successfully Deleted', {position: toast.POSITION.BOTTOM_CENTER ,style: {height:'10px',width:'200px',borderRadius: '10px',background:"red",color: '#ffffff',},});
        }
        catch(error){
         alert(error);
@@ -17,31 +21,24 @@ const ExpenseItem = (props) => {
 
     }
 	return (
-		<li className='list-group-item d-flex justify-content-between align-items-center'>
-			{props.name}
-			<div className='col-sm-2'>
-			{props.cost}
-			</div>
-			<div className='col-sm-2'>
-			{props.date}
-			</div>
-			<div className='col-sm-2'>
-			{props.amount}
-			</div>
-			<div className='col-sm-2'>
-			{props.category}
-			</div>
+		<li className='list-group-item  justify-content-between '>
+			<span >{props.name}</span>
+            <span >{props.date}</span>
+            <span >{props.category}</span>
+             <span class="pl-24"><a href="{% url 'edit' expense.id %}">
+             </a></span>
+			
 			<div>
 			<Link to={`/expenses/update/${props.id}`}>Update</Link>
 			</div>
 			<div>
-				<button onClick={DeleteData}>Delete</button>
+				<button style={{color:"red"}}onClick={DeleteData}>Delete</button>
 			</div>
 			<div>
 				<span className='badge badge-primary badge-pill mr-3'>
-					£{props.cost}
+				₹{props.cost}
 				</span>
-				<TiDelete size='1.5em'></TiDelete>
+				
 			</div>
 		</li>
 	);

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\WSD=Project2.0\\WSD_Project\\expense_tracker_backend\\expense_tracker\\expense_tracker.csproj": {}
+    "D:\\WSD=Project2.0\\WSD_Project\\expense-tracker\\expense_tracker_backend\\expense_tracker\\expense_tracker.csproj": {}
   },
   "projects": {
-    "D:\\WSD=Project2.0\\WSD_Project\\expense_tracker_backend\\expense_tracker\\expense_tracker.csproj": {
+    "D:\\WSD=Project2.0\\WSD_Project\\expense-tracker\\expense_tracker_backend\\expense_tracker\\expense_tracker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\WSD=Project2.0\\WSD_Project\\expense_tracker_backend\\expense_tracker\\expense_tracker.csproj",
+        "projectUniqueName": "D:\\WSD=Project2.0\\WSD_Project\\expense-tracker\\expense_tracker_backend\\expense_tracker\\expense_tracker.csproj",
         "projectName": "expense_tracker",
-        "projectPath": "D:\\WSD=Project2.0\\WSD_Project\\expense_tracker_backend\\expense_tracker\\expense_tracker.csproj",
+        "projectPath": "D:\\WSD=Project2.0\\WSD_Project\\expense-tracker\\expense_tracker_backend\\expense_tracker\\expense_tracker.csproj",
         "packagesPath": "C:\\Users\\Krupali\\.nuget\\packages\\",
-        "outputPath": "D:\\WSD=Project2.0\\WSD_Project\\expense_tracker_backend\\expense_tracker\\obj\\",
+        "outputPath": "D:\\WSD=Project2.0\\WSD_Project\\expense-tracker\\expense_tracker_backend\\expense_tracker\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Krupali\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.2, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.2, )"
@@ -69,6 +73,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "Swashbuckle.AspNetCore.Filters": {
+              "target": "Package",
+              "version": "[7.0.6, )"
             }
           },
           "imports": [

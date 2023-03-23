@@ -27,7 +27,21 @@
 .App-link {
   color: #61dafb;
 }
-
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+.h-custom {
+  height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+  .h-custom {
+  height: 100%;
+  }
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -36,3 +50,23 @@
     transform: rotate(360deg);
   }
 }
+:root {
+	--primary: #1ed760;
+	--black: #000000;
+	--white: #ffffff;
+	--blue: #2941ab;
+	--sky-blue: #1877f2;
+	--gray: #8c8c8c;
+	--dark-green: #15883e;
+	--light-gray: #616467;
+	--light-white: #919496;
+	--light-black: #282828;
+	--light-pink: #ffcdd2;
+	--mini-black: #181818;
+	--gradient-gray: #535353;
+
+	--error: #cc0000;
+	--toastify-toast-min-height: 5rem;
+}
+
+

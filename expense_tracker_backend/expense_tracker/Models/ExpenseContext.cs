@@ -7,6 +7,10 @@ namespace expense_tracker.Models
         public ExpenseContext(DbContextOptions<ExpenseContext> options) : base(options)
         {
         }
-        public DbSet<Expense> Expenses { get; set; } = null!;
+        public DbSet<Expense> Expenses => Set<Expense>();
+        public DbSet<User> Users => Set<User>();
+
+        public DbSet<UserLoginDTO> UserLoginDTOs { get; set; } = null!;
+        public DbSet<UserRegisterDTO> UserRegisterDTOs { get; set;} = null!;
     }
 }

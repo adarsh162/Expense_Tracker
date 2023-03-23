@@ -8,6 +8,8 @@
         public DateTime Date { get; set; }
         public string? Category { get; set; }
 
-        public long Uid { get; set; }
+        public string Uid { get; set; }
+
+       
     }
 }
