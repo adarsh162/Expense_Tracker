@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from "react";
 import axios from "axios";
-import { TextField,Button } from "@mui/material";
+import { Button } from "@mui/material";
+import {TextField} from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -11,40 +12,61 @@ const UpdateExpense=()=>{
   const params=useParams();
   const navigate=useNavigate();
   const id=params.id;
-    const [details,setdetails] = useState({
-        Id:params.id,
-        Name:"",
-        Amount:0,
-        Date:"",
-        Category:"",
-        Uid:localStorage.getItem("Username")
+  let pid=parseInt(localStorage.getItem("Pid"), 10);
+  let name=localStorage.getItem("Uname");
+  let amount=parseInt(localStorage.getItem("Uamount"),10);
+  let date = localStorage.getItem("Udate");
+  let category = localStorage.getItem("Ucategory");
+  let uid= localStorage.getItem("Username");
+  const [firstName, setFirstName] = useState('Default value');
 
-    });
+    const [details,setdetails] = useState({
+      id:pid,
+      name:name,
+      amount:amount,
+      date:date,
+      category:category,
+      uid:uid
+    }
+    );
     const home = ()=> {
+      localStorage.removeItem("Pid");
+      localStorage.removeItem("Uname");
+        localStorage.removeItem("Uamount");
+        localStorage.removeItem("Udate");
+        localStorage.removeItem("Ucategory");
       navigate("/expenses/home");
     }
     const onChangeInput=(e)=>{
-        
+        console.log(e.target.name,e.target.value);
         setdetails({...details,[e.target.name]: e.target.value});
       }
-    const getdata = async (id) => {
+    /*const getdata = async (id) => {
       const data=await axios.get(`https://localhost:7028/api/Expenses/${id}`);
       console.log(data.data);
       setdetails(data.data);
-    }
+    }*/
     
-    const updateData = () => {
+    const updateData = async () => {
         try{
         console.log(details);
-        axios.put(`https://localhost:7028/api/Expenses/${details.Id}`,{
-            Id:details.Id,
-            Name:details.Name,
-            Amount: details.Amount,
-            Date:details.Date,
-            Category:details.Category,
-            Uid:details.Uid
+        await axios.put(`https://localhost:7028/api/Expenses/${details.id}`,{
+           id:details.id,
+           name:details.name,
+           amount:details.amount,
+           date:details.date,
+           category:details.category,
+           uid:details.uid
+
+
         })
-        toast('Successfully Updated', {position: toast.POSITION.BOTTOM_CENTER ,style: {height:'10px',width:'200px',borderRadius: '10px',background:"rgb(75, 147, 242)",color: '#ffffff',},});
+        localStorage.removeItem("Pid");
+        localStorage.removeItem("Uname");
+        localStorage.removeItem("Uamount");
+        localStorage.removeItem("Udate");
+        localStorage.removeItem("Ucategory");
+
+        toast('Successfully Updated', {position: toast.POSITION.BOTTOM_CENTER ,autoClose: 1000,hideProgressBar: true,style: {height:'10px',width:'200px',borderRadius: '10px',background:"rgb(75, 147, 242)",color: '#ffffff',},});
         navigate('/expenses/home');
         
        }
@@ -53,14 +75,14 @@ const UpdateExpense=()=>{
        }
 
     }
-    useEffect(()=>{
-       getdata(id);
-    },[])
+   
     return (
-        <div class="container">
+      
+        <div classname="container">
           <br></br>
           <button class='toggle-btn-sqr-blk' onClick={home}>Home</button>
         <h3 className='h12'>Update</h3>
+       
           
           <div className="form1">
           
@@ -71,49 +93,51 @@ const UpdateExpense=()=>{
               hidden
               name="Id"
               variant="outlined"
-              value={details.Id}
-              onChange = {onChangeInput}
+              value={details.id}
+        
               />
             <br />
+            
+
             <TextField
               style={{ width: "200px", margin: "5px" }}
               type="text"
               label="Name"
-              name="Name"
+              name="name"
               variant="outlined"
-              value={details.Name}
-              onChange = {onChangeInput}
-              autoComplete="true"
+              
+              onChange={onChangeInput}
+              defaultValue={details.name}
               />
             <br />
             <TextField
               style={{ width: "200px", margin: "5px" }}
               type="number"
               label="Amount"
-              name="Amount"
+              name="amount"
               variant="outlined"
               onChange = {onChangeInput}
-              value={details.Amount}
+              defaultValue={details.amount}
               />
             <br />
             <TextField
               style={{ width: "200px", margin: "5px" }}
               type="date"
               label="Date"
-              name="Date"
+              name="date"
               variant="outlined"
               onChange = {onChangeInput}
-              value={details.Date}
+              defaultValue={details.date}
               />
             <br />
             <TextField
               style={{ width: "200px", margin: "5px" }}
               type="text"
               label="Category"
-              name="Category"
+              name="category"
               variant="outlined"
               onChange = {onChangeInput}
-              value={details.Category}
+              defaultValue={details.category}
               />
             <br />
             <Button variant="contained" color="primary" onClick={updateData}>

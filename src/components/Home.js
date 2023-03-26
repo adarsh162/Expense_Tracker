@@ -26,7 +26,7 @@ const Home = () => {
 	
 	const tost= ()=>{
 		//toast.success('successful',{className: "success",position: toast.POSITION.BOTTOM_CENTER });
-		toast('Success', {icon: '👏',position: toast.POSITION.BOTTOM_CENTER ,style: {height:'10px',width:'200px',borderRadius: '10px',background:"#15883e",color: '#ffffff',},});
+		toast('Success', {icon: '👏',position: toast.POSITION.BOTTOM_CENTER,autoClose: 1000,hideProgressBar: true,style: {width:'200px',borderRadius: '10px',background:"#15883e",color: '#ffffff',},});
 	}
 	return (
 		<div className='container'>

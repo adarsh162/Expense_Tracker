@@ -20,6 +20,9 @@ code {
 	text-align: center;
 	border-radius: 1rem;
 }
+.Toastify__toast--success {
+	height: 10px;
+}
 
 .Toastify__toast-theme--colored.Toastify__toast--error {
 	background-color: var(--error);

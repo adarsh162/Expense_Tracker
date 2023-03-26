@@ -8,6 +8,20 @@
 .h-custom {
   height: calc(100% - 73px);
 }
+.footer{
+  position: absolute;
+  justify-content: center;
+  text-align: center;
+  padding-top: 18px;
+ 
+  width: 100%;
+  margin-top: 133px;
+  
+  background-color: rgb(19, 125, 254);
+}
+.pad{
+  margin-top: 50px;
+}
 @media (max-width: 450px) {
   .h-custom {
   height: 100%;

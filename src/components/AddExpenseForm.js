@@ -29,7 +29,7 @@ const AddExpenseForm = () => {
 		   });
 		   
 		   
-		   toast('Success', {icon: '👏',position: toast.POSITION.BOTTOM_CENTER ,style: {height:'10px',width:'200px',borderRadius: '10px',background:"#15883e",color: '#ffffff',},});
+		   toast('Success', {icon: '👏',position: toast.POSITION.BOTTOM_CENTER ,autoClose: 1000,hideProgressBar: true,style: {height:'10px',width:'200px',borderRadius: '10px',background:"#15883e",color: '#ffffff',},});
 		   navigate('/expenses/home');
 		}
 		catch(error){

@@ -13,7 +13,7 @@ const ExpenseItem = (props) => {
         //console.log(details);
         axios.delete(`https://localhost:7028/api/Expenses/${props.id}`,
         );
-		toast('Successfully Deleted', {position: toast.POSITION.BOTTOM_CENTER ,style: {height:'10px',width:'200px',borderRadius: '10px',background:"red",color: '#ffffff',},});
+		toast('Successfully Deleted', {position: toast.POSITION.BOTTOM_CENTER ,autoClose: 1000,hideProgressBar: true,style: {height:'10px',width:'200px',borderRadius: '10px',background:"red",color: '#ffffff',},});
        }
        catch(error){
         alert(error);
@@ -29,7 +29,7 @@ const ExpenseItem = (props) => {
              </a></span>
 			
 			<div>
-			<Link to={`/expenses/update/${props.id}`}>Update</Link>
+			<Link to={`/expenses/bupdate/update/${props.id}`}>Update</Link>
 			</div>
 			<div>
 				<button style={{color:"red"}}onClick={DeleteData}>Delete</button>

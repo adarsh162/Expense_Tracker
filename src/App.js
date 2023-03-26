@@ -10,6 +10,7 @@ import UpdateExpense from './components/UpdateExpense';
 import DeleteExpense from './components/DeleteExpense';
 import Login from './components/Login';
 import Register from './components/Register';
+import Bupdate from './components/Bupdate';
 
 const App = () => {
 	return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/expenses/home" element={<Home/>} />
           <Route path="/expenses/:uid" element={<ReadExpense />} />
           <Route path="/expenses/create" element={<AddExpenseForm />} />
+		  <Route path="/expenses/bupdate/update/:id" element={<Bupdate/>} />
 		  <Route path="/expenses/update/:id" element={<UpdateExpense />} />
 		  <Route path="/expenses/delete" element={<DeleteExpense />} />
 		  
