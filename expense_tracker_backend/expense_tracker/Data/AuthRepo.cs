@@ -1,8 +1,15 @@
 ﻿using expense_tracker.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace expense_tracker.Data
 {
@@ -31,7 +38,6 @@ namespace expense_tracker.Data
             return (int)user.Id;
         }
 
-       
         public async Task<bool> UserExists(string username)
         {
             if(await _context.Users.AnyAsync(u=>u.UserName.ToLower() == username.ToLower()))
@@ -50,7 +56,7 @@ namespace expense_tracker.Data
         }
 
 
-        public async Task<string?> Login(string username, string password)
+        public async Task<User> Login(string username, string password)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName.ToLower() == username.ToLower());
             if(user == null)
@@ -63,7 +69,8 @@ namespace expense_tracker.Data
             }
             else
             {
-                return CreateToken(user);
+                CreateToken(user);
+                return (user);
             }
         }
 
@@ -101,6 +108,28 @@ namespace expense_tracker.Data
             SecurityToken securityToken = tokenHandler.CreateToken(tokenDescriptor);
 
             return tokenHandler.WriteToken(securityToken);
+
+        }
+        public async Task<User> Update (string username,User user)
+        {
+            var user1 = await _context.Users.FirstOrDefaultAsync(u => u.UserName.ToLower() == username.ToLower());
+
+            user1.UserName = user.UserName;
+            user1.Age = user.Age;
+            user1.Email = user.Email;   
+            user1.Phone = user.Phone;
+            _context.Entry(user1).State = EntityState.Modified;
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+               
+            }
+
+            return user1;
+
 
         }
 

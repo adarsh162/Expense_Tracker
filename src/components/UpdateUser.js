@@ -8,37 +8,26 @@ import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { maxWidth } from "@mui/system";
 
-const UpdateExpense=()=>{
+const UpdateUser=()=>{
   const params=useParams();
   const navigate=useNavigate();
-  const id=params.id;
-  let pid=parseInt(localStorage.getItem("Pid"), 10);
-  let name=localStorage.getItem("Uname");
-  let amount=parseInt(localStorage.getItem("Uamount"),10);
-  let date = localStorage.getItem("Udate");
-  let category = localStorage.getItem("Ucategory");
-  let uid= localStorage.getItem("Username");
-  const [firstName, setFirstName] = useState('Default value');
+  let name=localStorage.getItem("Username");
+  let age=parseInt(localStorage.getItem("Userage"),10);
+  let email = localStorage.getItem("Useremail");
+  let phone = localStorage.getItem("Userphone");
 
     const [details,setdetails] = useState({
-      id:pid,
       name:name,
-      amount:amount,
-      date:date,
-      category:category,
-      uid:uid
+      age:age,
+     email:email,
+      phone:phone,
     }
     );
     const home = ()=> {
-      localStorage.removeItem("Pid");
-      localStorage.removeItem("Uname");
-        localStorage.removeItem("Uamount");
-        localStorage.removeItem("Udate");
-        localStorage.removeItem("Ucategory");
       navigate("/expenses/home");
     }
     const onChangeInput=(e)=>{
-        console.log(e.target.name,e.target.value);
+
         setdetails({...details,[e.target.name]: e.target.value});
       }
     /*const getdata = async (id) => {
@@ -50,24 +39,22 @@ const UpdateExpense=()=>{
     const updateData = async () => {
         try{
         console.log(details);
-        await axios.put(`https://localhost:7028/api/Expenses/${details.id}`,{
-           id:details.id,
-           name:details.name,
-           amount:details.amount,
-           date:details.date,
-           category:details.category,
-           uid:details.uid
-
+        await axios.put(`https://localhost:7028/api/Auth/${details.name}`,{
+           username:details.name,
+           password:"string",
+           email:details.email,
+           age:details.age,
+           phone:details.phone,
 
         })
-        localStorage.removeItem("Pid");
-        localStorage.removeItem("Uname");
-        localStorage.removeItem("Uamount");
-        localStorage.removeItem("Udate");
-        localStorage.removeItem("Ucategory");
+        localStorage.setItem("Username",details.name);
+        localStorage.setItem("Userage",details.age);
+        localStorage.setItem("Useremail",details.email);
+        localStorage.setItem("Userphone",details.phone);
+        
 
         toast('Successfully Updated', {position: toast.POSITION.BOTTOM_CENTER ,autoClose: 1000,hideProgressBar: true,style: {height:'10px',width:'200px',borderRadius: '10px',background:"rgb(75, 147, 242)",color: '#ffffff',},});
-        navigate(`/expenses/${uid}`);
+        navigate('/expenses/myprofile');
         
        }
        catch(error){
@@ -87,16 +74,7 @@ const UpdateExpense=()=>{
           
           <div className="form12">
           
-        <TextField
-              style={{ width:maxWidth}}
-              type="text"
-              label="id"
-              hidden
-              name="Id"
-              variant="outlined"
-              value={details.id}
         
-              />
             <br />
             
 
@@ -114,39 +92,39 @@ const UpdateExpense=()=>{
             <TextField
               style={{ width: "200px", margin: "5px" }}
               type="number"
-              label="Amount"
-              name="amount"
+              label="Age"
+              name="age"
               variant="outlined"
               onChange = {onChangeInput}
-              defaultValue={details.amount}
-              />
-            <br />
-            <TextField
-              style={{ width: "200px", margin: "5px" }}
-              type="date"
-              label="Date"
-              name="date"
-              variant="outlined"
-              onChange = {onChangeInput}
-              defaultValue={details.date}
+              defaultValue={details.age}
               />
             <br />
             <TextField
               style={{ width: "200px", margin: "5px" }}
               type="text"
-              label="Category"
-              name="category"
+              label="Email"
+              name="email"
               variant="outlined"
               onChange = {onChangeInput}
-              defaultValue={details.category}
+              defaultValue={details.email}
+              />
+            <br />
+            <TextField
+              style={{ width: "200px", margin: "5px" }}
+              type="number"
+              label="Phone no"
+              name="phone"
+              variant="outlined"
+              onChange = {onChangeInput}
+              defaultValue={details.phone}
               />
             <br />
             <Button variant="contained" color="primary" onClick={updateData}>
-              Update Expense
+              Update User
             </Button>
             </div>
             </div>
     );
 }
 
-export default UpdateExpense;
+export default UpdateUser;

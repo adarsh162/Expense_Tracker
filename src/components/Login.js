@@ -5,6 +5,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { redirect } from 'react-router-dom';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = ()=>{
     const navigate = useNavigate();
@@ -25,15 +27,24 @@ const Login = ()=>{
 		   });
 		   
 		   setudetails("");
+
            if(res.status==200){
-            localStorage.setItem("Username",res.data.username);
+            console.log(res);
+            localStorage.setItem("Username",res.data.userName);
+            localStorage.setItem("Useremail",res.data.email);
+            localStorage.setItem("Userage",res.data.age);
+            localStorage.setItem("Userphone",res.data.phone);
+
             console.log(res.data);
+            toast('Successful', {icon: '👏',position: toast.POSITION.BOTTOM_CENTER,autoClose: 1000,hideProgressBar: true,style: {width:'200px',borderRadius: '10px',background:"#15883e",color: '#ffffff',},});
+
             navigate("/expenses/home");
            }
            console.log(res.data);
 		}
 		catch(error){
-			alert(error);
+      toast(error, {position: toast.POSITION.BOTTOM_CENTER,autoClose: 1000,hideProgressBar: true,style: {width:'200px',borderRadius: '10px',background:"red",color: '#ffffff',},});
+
 		}
 	}
   const register = ()=>{

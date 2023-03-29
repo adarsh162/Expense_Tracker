@@ -5,6 +5,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { redirect } from 'react-router-dom';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = ()=>{
     const navigate = useNavigate();
@@ -12,6 +14,9 @@ const Register = ()=>{
 		
 		Username:"",
 		Password:"",
+    Age:0,
+    Email:"",
+    Phone:0,
     token:"String"
 	})
 	const register= async( event )=>{
@@ -19,20 +24,27 @@ const Register = ()=>{
 		try{
 			console.log(user);
             let res=await axios.post("https://localhost:7028/api/Auth/Register",{
-			username:user.Username,
+			      username:user.Username,
             password:user.Password,
+            email:user.Email,
+            age:user.Age,
+            phone:user.Phone
 		   });
 		   
 		   setudetails("");
            if(res.status==200){
             localStorage.setItem("Username",res.data.username);
+            localStorage.setItem("Useremail",res.data.email);
+            localStorage.setItem("Userage",res.data.age);
+            localStorage.setItem("Userphone",res.data.phone);
             console.log(res.data);
+            toast('Successful', {icon: '👏',position: toast.POSITION.BOTTOM_CENTER,autoClose: 1000,hideProgressBar: true,style: {width:'200px',borderRadius: '10px',background:"#15883e",color: '#ffffff',},});
             navigate("/expenses/home");
            }
            console.log(res.data);
 		}
 		catch(error){
-			alert(error);
+			toast(error, {position: toast.POSITION.BOTTOM_CENTER,autoClose: 1000,hideProgressBar: true,style: {width:'200px',borderRadius: '10px',background:"red",color: '#ffffff',},});
 		}
 	}
   const login = ()=>{
@@ -64,8 +76,11 @@ const Register = ()=>{
                 <p className="text-center fw-bold mx-3 mb-0"></p>
               </div>
     
-              <MDBInput wrapperClass='mb-4' label="Username" id='formControlLg' name="Username" type='text' onChange={onChangeInput}  size="lg"/>
-              <MDBInput wrapperClass='mb-4' label='Password' id='formControlLg' name="Password" type='password' onChange={onChangeInput} value={user.Password} size="lg"/>
+              <MDBInput wrapperClass='mb-4' label="Username" id='formControlLg1' name="Username" type='text' onChange={onChangeInput}  size="lg"/>
+              <MDBInput wrapperClass='mb-4' label='Password' id='formControlLg2' name="Password" type='password' onChange={onChangeInput} value={user.Password} size="lg"/>
+              <MDBInput wrapperClass='mb-4' label="Email" id='formControlLg3' name="Email" type='text' onChange={onChangeInput} value={user.Email} size="lg"/>
+              <MDBInput wrapperClass='mb-4' label="Age" id='formControlLg4' name="Age" type='number' onChange={onChangeInput} value={user.Age} size="lg"/>
+              <MDBInput wrapperClass='mb-4' label="Phone" id='formControlLg5' name="Phone" type='number' onChange={onChangeInput} value={user.Phone} size="lg"/>
     
               <div className="d-flex justify-content-between mb-4">
                 <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />

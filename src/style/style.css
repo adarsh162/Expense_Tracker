@@ -34,9 +34,61 @@ div.expense-header span, div.expense-row span{
     justify-content: center;
     width: 150px;
     height: 40px;
+    margin-left: 70%;
     border-radius: 20px;
     cursor: pointer;
 }
+
+.toggle-btn-ctr-blue-sh{
+    background: blueviolet;
+    
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 60px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5%;
+    margin-top: 20%;
+}
+.toggle-btn-ctr-blue-sh:hover{background-color: rgb(154, 79, 228);}
+.toggle-btn-ctr-blue:hover{background-color: rgb(86, 79, 231);}
+.toggle-btn-ctr-green{
+    background: rgb(42, 172, 77);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    margin-top: 5%;
+    margin-left: 40%;
+    justify-content: center;
+    width: 150px;
+    height: 40px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.toggle-btn-ctr-greenp{
+    background: rgb(12, 193, 60);
+    
+    color: #fff;
+    display: flex;
+    align-items: center;
+    margin-top: 5%;
+    margin-bottom: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    width: 250px;
+    height: 60px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.toggle-btn-ctr-greenp:hover {background-color:rgb(42, 172, 77)}
+.toggle-btn-ctr-green:hover {background-color:rgb(17, 170, 57)}
+.toggle-btn-sqr-blk:hover {background-color:rgb(21, 21, 21)}
 .toggle-btn-sqr-blk{
     background: black;color: #fff;
     display: flex;
@@ -51,10 +103,35 @@ div.expense-header span, div.expense-row span{
     width: 25px;
     margin-left: 10px;
 } 
+.form12{
+    border: solid;
+    padding-left: 17%;
+    margin: auto;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    max-width: 50%;
+}
+.container1{
+    background-image: url('../style/home5.jpg');
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+    height: fit-content;
+    
+    
+}
+.container1.homeb{
+    opacity: 0.5;
+   
+}
 .form1{
     border: solid;
-    padding: 15px;
+    padding-left: 25px;
+    padding-top: 25px;
+    padding-right: 25px;
     margin: auto;
+    padding-bottom: 20px;
     border-radius: 5px;
     align-items: center;
     justify-content: center;
@@ -62,4 +139,46 @@ div.expense-header span, div.expense-row span{
 }
 .col-sm1{
     margin-left:42%;
+}
+.details{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border: solid;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: large;
+    width: 50%;
+    margin-left: 25.5%;
+
+}
+.pic{
+    border-radius: 50px;
+    margin-left: 45%;
+    max-width: 50%;
+    max-height: 150px;
+
+}
+.logout{
+    background: rgb(45, 72, 170);
+    
+    color: #fff;
+    display: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 60px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 33%;
+}
+.logout:hover {background-color:rgb(60, 93, 213)}
+.homeb{
+    border: solid;
+    align-items: center;
+    justify-content: center;
+    max-width: 50%;
+    margin-left: 25%;
+    margin-top: 7%;
+    background:rgba(150, 150, 150, 0.5);
 }

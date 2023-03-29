@@ -11,6 +11,8 @@ import DeleteExpense from './components/DeleteExpense';
 import Login from './components/Login';
 import Register from './components/Register';
 import Bupdate from './components/Bupdate';
+import MyProfile from './components/MyProfile';
+import UpdateUser from './components//UpdateUser';
 
 const App = () => {
 	return (
@@ -25,6 +27,8 @@ const App = () => {
 		  <Route path="/expenses/bupdate/update/:id" element={<Bupdate/>} />
 		  <Route path="/expenses/update/:id" element={<UpdateExpense />} />
 		  <Route path="/expenses/delete" element={<DeleteExpense />} />
+		  <Route path="/expenses/myprofile" element={<MyProfile/>} />
+		  <Route path="/expenses/user/update" element={<UpdateUser/>} />
 		  
 
       </Routes>
